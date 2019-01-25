@@ -5,12 +5,14 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "account_number", name = "uk_account_number"))
 public class Account {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "account_number")
     private String accountNumber;
 
     private String firstName;
