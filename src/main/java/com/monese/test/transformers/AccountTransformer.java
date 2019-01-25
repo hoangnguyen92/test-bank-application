@@ -5,6 +5,7 @@ import com.monese.test.dtos.TransactionDto;
 import com.monese.test.model.Account;
 
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,9 +20,12 @@ public class AccountTransformer {
         accountDto.setFirstName(account.getFirstName());
         accountDto.setLastName(account.getLastName());
 
-        List<TransactionDto> transactionDtos = account.getTransactions().stream()
-                .map(TransactionTransformer::toTransactionDto)
-                .collect(Collectors.toList());
+        List<TransactionDto> transactionDtos = new ArrayList<>();
+        if(account.getTransactions() != null){
+            transactionDtos = account.getTransactions().stream()
+                    .map(TransactionTransformer::toTransactionDto)
+                    .collect(Collectors.toList());
+        }
         accountDto.setTransactions(transactionDtos);
 
         return accountDto;

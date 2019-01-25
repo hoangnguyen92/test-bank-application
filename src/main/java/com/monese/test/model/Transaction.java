@@ -1,7 +1,7 @@
 package com.monese.test.model;
 
 import com.monese.test.enums.TransactionType;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -23,7 +23,7 @@ public class Transaction {
 
     private BigDecimal amount;
 
-    @CreatedDate
+    @CreationTimestamp
     private LocalDateTime transactionDate;
 
     public Long getId() {
@@ -65,4 +65,5 @@ public class Transaction {
     public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
+
 }

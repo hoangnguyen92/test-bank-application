@@ -21,7 +21,7 @@ public class Account {
 
     private BigDecimal balance;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 
     public Long getId() {
@@ -75,4 +75,5 @@ public class Account {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
+
 }

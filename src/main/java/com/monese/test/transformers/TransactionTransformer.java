@@ -10,7 +10,7 @@ public class TransactionTransformer {
         TransactionDto transactionDto = new TransactionDto();
         transactionDto.setAmount(transaction.getAmount());
         transactionDto.setTransactionType(transaction.getTransactionType());
-
+        transactionDto.setTransactionTime(transaction.getTransactionDate());
         return transactionDto;
     }
 

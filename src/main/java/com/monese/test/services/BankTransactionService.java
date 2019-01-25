@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -23,9 +24,8 @@ public class BankTransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    @Transactional
     public TransactionResponse sendMoney(TransactionRequest transactionRequest){
-        String message = "";
-
         if(transactionRequest.getReceiverAccountNumber().equals(transactionRequest.getSenderAccountNumber()))
             throw new ResponseStatusException(HttpStatus.FORBIDDEN,"Sender and Receiver must be different");
 
@@ -59,6 +59,6 @@ public class BankTransactionService {
         receverTransaction.setTransactionType(TransactionType.RECEIVE);
         transactionRepository.save(receverTransaction);
 
-        return new TransactionResponse(message);
+        return new TransactionResponse("Money send successful!");
     }
 }

@@ -2,6 +2,7 @@ package com.monese.test.dtos;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 public class AccountDto {
     private String accountNumber;
@@ -62,5 +63,27 @@ public class AccountDto {
 
     public void setTransactions(List<TransactionDto> transactions) {
         this.transactions = transactions;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final AccountDto that = (AccountDto) o;
+        return Objects.equals(accountNumber, that.accountNumber)
+                                && Objects.equals(firstName, that.firstName)
+                                && Objects.equals(lastName, that.lastName)
+                                && Objects.equals(email, that.email)
+                                && Objects.equals(balance, that.balance)
+                                && Objects.equals(transactions, that.transactions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountNumber, firstName,lastName,email,balance,transactions);
     }
 }

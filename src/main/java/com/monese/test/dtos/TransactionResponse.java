@@ -4,6 +4,9 @@ public class TransactionResponse {
 
     private String message;
 
+    public TransactionResponse() {
+    }
+
     public TransactionResponse(String message) {
         this.message = message;
     }
